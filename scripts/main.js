@@ -27,24 +27,49 @@ function getPlayerChoice() {
     }
 }
 
+//Play a round of rock, paper, scissors
 function playRound(playerSelection, computerSelection) {
+    let win = "You win!";
+    let lose = "You lose!";
+    let tie = "It's a tie!";
     if (playerSelection === "rock" && computerSelection === "scissors") {
-        return "You win!";
+        return win;
     }
     else if (playerSelection === "paper" && computerSelection === "rock") {
-        return "You win!";
+        return win;
     }
     else if (playerSelection === "scissors" && computerSelection === "paper") {
-        return "You win!";
+        return win;
     }
     else if (playerSelection === computerSelection) {
-        return "It's a tie!";
+        return tie;
     }
     else {
-        return "You lose!";
+        return lose;
     }
 }
 
-const playerSelection = getPlayerChoice();
-const computerSelection = getComputerChoice();
-console.log(playRound(playerSelection, computerSelection));
+//Keep score of the game and determine who wins
+function game() {
+    let playerScore = 0;
+    let computerScore = 0;
+    let tieScore = 0;
+    for (let i = 0; i < 5; i++) {
+        const playerSelection = getPlayerChoice();
+        const computerSelection = getComputerChoice();
+        const roundResult = playRound(playerSelection, computerSelection);
+        if (roundResult === "You win!") {
+            playerScore++;
+        }
+        else if (roundResult === "You lose!") {
+            computerScore++;
+        }
+        else {
+            tieScore++;
+        }
+    }
+    
+    return `Player: ${playerScore} \nComputer: ${computerScore} \nTies: ${tieScore}`;
+}
+
+console.log(game());
