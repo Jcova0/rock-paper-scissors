@@ -16,4 +16,35 @@ function getComputerChoice() {
     }
 }
 
-console.log(getComputerChoice());
+//Get player choice
+function getPlayerChoice() {
+    let playerChoice = prompt("Choose rock, paper, or scissors: ");
+    if (playerChoice === "rock" || playerChoice === "paper" || playerChoice === "scissors") {
+        return playerChoice;
+    }
+    else {
+        return "Error";
+    }
+}
+
+function playRound(playerSelection, computerSelection) {
+    if (playerSelection === "rock" && computerSelection === "scissors") {
+        return "You win!";
+    }
+    else if (playerSelection === "paper" && computerSelection === "rock") {
+        return "You win!";
+    }
+    else if (playerSelection === "scissors" && computerSelection === "paper") {
+        return "You win!";
+    }
+    else if (playerSelection === computerSelection) {
+        return "It's a tie!";
+    }
+    else {
+        return "You lose!";
+    }
+}
+
+const playerSelection = getPlayerChoice();
+const computerSelection = getComputerChoice();
+console.log(playRound(playerSelection, computerSelection));
