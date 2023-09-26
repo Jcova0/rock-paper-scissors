@@ -1,5 +1,5 @@
 
-//Get random computer choice
+//Randomly choose between rock, paper, or scissors
 function getComputerChoice() {
     let randomNumber = Math.floor(Math.random() * 3);
     if (randomNumber === 0) {
@@ -16,7 +16,7 @@ function getComputerChoice() {
     }
 }
 
-//Get player choice
+//Choose between rock, paper, or scissors
 function getPlayerChoice() {
     let playerChoice = prompt("Choose rock, paper, or scissors: ");
     if (playerChoice === "rock" || playerChoice === "paper" || playerChoice === "scissors") {
@@ -27,7 +27,7 @@ function getPlayerChoice() {
     }
 }
 
-//Play a round of rock, paper, scissors
+//Decide who wins the round
 function playRound(playerSelection, computerSelection) {
     let win = "You win!";
     let lose = "You lose!";
@@ -68,7 +68,7 @@ function game() {
             tieScore++;
         }
     }
-    
+
     return `Player: ${playerScore} \nComputer: ${computerScore} \nTies: ${tieScore}`;
 }
 
