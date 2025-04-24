@@ -1,5 +1,12 @@
 let humanScore = 0;
 let computerScore = 0;
+let rockBtn = document.querySelector(".rock");
+let paperBtn = document.querySelector(".paper");
+let scissorsBtn = document.querySelector(".scissors");
+let score = document.querySelector(".score");
+let results = document.querySelector(".results");
+score.textContent = "Player: 0 - Computer: 0";
+
 
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
@@ -17,14 +24,20 @@ function getComputerChoice() {
     }
 }
 
-function getHumanChoice() {
-   let start = prompt("Rock, paper, or scissors").toLowerCase();
-   return start;
-}
+rockBtn.addEventListener("click", (event) => {
+    playRound("rock", getComputerChoice());
+});
+
+paperBtn.addEventListener("click", (event) => {
+    playRound("paper", getComputerChoice());
+});
+
+scissorsBtn.addEventListener("click", (event) => {
+    playRound("scissors", getComputerChoice());
+});
 
 function playRound(humanChoice, computerChoice) {
     if (humanChoice === computerChoice) {
-        console.log(`Tie round! ${humanChoice} does not beat ${computerChoice}`);
         return;
     }
 
@@ -32,35 +45,31 @@ function playRound(humanChoice, computerChoice) {
         (humanChoice === "paper" && computerChoice === "rock") ||
         (humanChoice === "rock" && computerChoice === "scissors")) 
     {
-        console.log(`You win! ${humanChoice} beats ${computerChoice}`);
         humanScore++;
     }
 
     else {
-        console.log(`You lose! ${computerChoice} beats ${humanChoice}`);
         computerScore++;
     }
+
+    score.textContent = `Player: ${humanScore} - Computer: ${computerScore}`;
+
+    playGame();
 }
+
+
 
 function playGame() {
-    let i = 0;
-    while(i < 5) {
-        playRound(getHumanChoice(), getComputerChoice());
-        i++;
-    }
-
     if (humanScore === computerScore) {
-        console.log('There was no winner, tie game!');
+        score.textContent = `Player: ${humanScore} - Computer: ${computerScore}`;
     }
-    if (humanScore > computerScore) {
-        console.log(`You win!`)
+    if (humanScore === 5) {
+        results.textContent = "You won!";
     }
-    else {
-        console.log(`You lose!`)
+    else if (computerScore === 5) {
+        results.textContent = "You lost!";
     }
 }
-
-playGame();
 
 
 
